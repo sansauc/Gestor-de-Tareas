@@ -167,16 +167,20 @@ namespace GestorTareas {
 
         private void JMenu_FormClosing(object sender, FormClosingEventArgs e) {
 
-            DialogResult respuesta = MessageBox.Show("¿Guardar Cambios?", "Atencion", MessageBoxButtons.YesNoCancel);
+            if (!String.IsNullOrEmpty(this.txtTarea.Text)) {
 
-            if (respuesta == DialogResult.Yes) {
+                DialogResult respuesta = MessageBox.Show("¿Guardar Cambios?", "Atencion", MessageBoxButtons.YesNoCancel);
 
-                this.guardarCambios();
-                e.Cancel = true;
-                return;
+                if (respuesta == DialogResult.Yes) {
 
-            }else if (respuesta == DialogResult.Cancel) {
-                e.Cancel = true;
+                    this.guardarCambios();
+                    e.Cancel = true;
+                    return;
+
+                } else if (respuesta == DialogResult.Cancel) {
+                    e.Cancel = true;
+                }
+
             }
 
         }
